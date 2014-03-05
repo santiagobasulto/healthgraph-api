@@ -1,0 +1,24 @@
+import mock
+
+from resources import User
+from sessionmgr import Session
+
+from data import USER_BASE
+
+
+def test_santiago():
+    access_token = '0386da64a54b4262bd48cbfc9ffcdd2c'
+    with mock.patch('resources.User._get_resource_data') as usr_mock_data:
+        usr_mock_data.return_value = USER_BASE
+        user = User(session=Session(access_token))
+        assert str(user.get('userID')) == "10935031"
+        print str(user.get('userID'))
+
+    # profile = user.get_profile()
+    # act_iter = user.get_fitness_activity_iter()
+    # activities = [_ for _ in act_iter]
+    # import ipdb; ipdb.set_trace()
+
+drews = "4c85ea05875f4ac4a4a4df002e56a196"
+
+test_santiago()

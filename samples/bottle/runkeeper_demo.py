@@ -59,7 +59,7 @@ def index():
     if sess.has_key('rk_access_token'):
         bottle.redirect('/welcome')
     else:
-        rk_auth_mgr = healthgraph.AuthManager(conf['client_id'], conf['client_secret'], 
+        rk_auth_mgr = healthgraph.AuthManager(conf['client_id'], conf['client_secret'],
                                           '/'.join((conf['baseurl'], 'login',)))
         rk_auth_uri = rk_auth_mgr.get_login_url()
         rk_button_img = rk_auth_mgr.get_login_button_url('blue', 'black', 300)
@@ -87,8 +87,8 @@ def welcome():
         profile = user.get_profile()
         records = user.get_records()
         act_iter = user.get_fitness_activity_iter()
-        activities = [act_iter.next() for _ in range(5)]
-        return bottle.template('welcome.html', 
+        activities = [_ for _ in act_iter]
+        return bottle.template('welcome.html',
                                profile=profile,
                                activities=activities, 
                                records=records.get_totals())

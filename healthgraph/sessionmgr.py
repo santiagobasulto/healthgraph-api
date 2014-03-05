@@ -41,8 +41,9 @@ class Session(object):
                 headers[content_header] = ('application/vnd.com.runkeeper.%s+json'
                                            % content_type)
         url = settings.API_URL + resource
-        req = requests.request(request_type, url, headers=headers, 
+        req = requests.request(request_type, url, headers=headers,
                                params=params, data=data)
+        #assert False
         return req
     
     def get(self, resource, content_type=None, params=None):
